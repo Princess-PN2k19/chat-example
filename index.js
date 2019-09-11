@@ -1,18 +1,30 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+app.get('/', function(req, res) {
+   res.sendfile('index.html');
 });
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
+users = [];
+io.on('connection', function(socket) {
+   console.log('A user connected');
+   socket.on('setUsername', function(data) {
+      console.log(data);
+      
+      if(users.indexOf(data) > -1) {
+         socket.emit('userExists', 'Oooppps! ' + data + ' username is already taken. Kindly try another name.');
+      } else {
+         users.push(data);
+         socket.emit('userSet', {username: data});
+      }
+   });
+   
+   socket.on('msg', function(data) {
+     socket.broadcast.emit('msg', data);
+   })
 });
 
-http.listen(port, function(){
-  console.log('listening on *:' + port);
+http.listen(3000, function() {
+   console.log('listening on localhost:3000');
 });
