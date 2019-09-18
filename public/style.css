@@ -1,0 +1,46 @@
+html{
+    body {
+        background-image: url("http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-03.jpg");
+        font: 13px Helvetica, Arial;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+    
+      #container {
+        position: fixed;
+        padding-bottom: 20px;
+        bottom: 0;
+        max-width: 1200px;
+        width: 80%;
+        display: flex;
+      }
+    
+      #send-container {
+        position: fixed;
+        padding-bottom: 30px;
+        bottom: 0;
+        max-width: 1200px;
+        width: 80%;
+        display: flex;
+      }
+    
+      #message-container {
+        width: 80%;
+        max-width: 1200px;
+      }
+    
+      #message-container div {
+        background-color: #CCC;
+        padding: 5px;
+      }
+    
+      #message-container div:nth-child(2n) {
+        background-color: #FFF;
+      }
+    
+      #message {
+        flex-grow: 1;
+      }
+   }
