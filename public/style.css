@@ -1,46 +1,55 @@
-html{
-    body {
+    html{
+        height: 100%; box-sizing: border-box;
+    }
+    *, *:before, *:after{
+        box-sizing: inherit;
+        }
+    body{
+        font: 13px Helvetica, Arial; margin: 0; min-height: 100%; display: flex; flex-flow: row wrap;
+        }
+    form{
+        background: #ffb3ff; bottom: 0; width: 100%;
+        }
+    form input{
+        border: 0; padding: 10px; width: 85%; margin-right: .5%;
+        }
+    form button{
+        width: 10%; background: #ffccff; border: none; padding: 5px;
+        }
+    #messages{
+        list-style-type: none; margin: 0; padding: 0;
+        }
+    #messages li{
+        padding: 5px 10px;
+        }
+    #messages li:nth-child(odd){
+        background: #ffcce6;
+        }
+    #container{
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 200px);
+    }
+    section {
+        flex: 4;
         background-image: url("http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-03.jpg");
-        font: 13px Helvetica, Arial;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-      }
-    
-      #container {
-        position: fixed;
-        padding-bottom: 20px;
-        bottom: 0;
-        max-width: 1200px;
-        width: 80%;
-        display: flex;
-      }
-    
-      #send-container {
-        position: fixed;
-        padding-bottom: 30px;
-        bottom: 0;
-        max-width: 1200px;
-        width: 80%;
-        display: flex;
-      }
-    
-      #message-container {
-        width: 80%;
-        max-width: 1200px;
-      }
-    
-      #message-container div {
-        background-color: #CCC;
+    }
+    footer {
+        flex: 1;
+        background: #a6a6a6;
+    }
+    aside {
+        background: #ffe6f9;
+        flex: 1;
+    }
+    aside input {
+        border: 0;
+        padding: 10px;
+        width: 70%;
+    }
+    aside button {
+        width: 19%;
+        background: #ffccff;
+        border: none;
         padding: 5px;
-      }
-    
-      #message-container div:nth-child(2n) {
-        background-color: #FFF;
-      }
-    
-      #message {
-        flex-grow: 1;
-      }
-   }
+    }

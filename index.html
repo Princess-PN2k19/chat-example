@@ -3,50 +3,90 @@
 
 <head>
   <title>Chat App</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <link href="style.css" type="text/plain" rel="stylesheet" />
 </head>
 
+<style>
+    html{
+        height: 100%; box-sizing: border-box;
+    }
+    *, *:before, *:after{
+        box-sizing: inherit;
+        }
+    body{
+        font: 13px Helvetica, Arial; margin: 0; min-height: 100%; display: flex; flex-flow: row wrap;
+        }
+    form{
+        background: #ffb3ff; bottom: 0; width: 100%;
+        }
+    form input{
+        border: 0; padding: 10px; width: 85%; margin-right: .5%;
+        }
+    form button{
+        width: 10%; background: #ffccff; border: none; padding: 5px;
+        }
+    #messages{
+        list-style-type: none; margin: 0; padding: 0;
+        }
+    #messages li{
+        padding: 5px 10px;
+        }
+    #messages li:nth-child(odd){
+        background: #ffcce6;
+        }
+    #container{
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 200px);
+    }
+    section {
+        flex: 4;
+        background-image: url("http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-03.jpg");
+    }
+    footer {
+        flex: 1;
+        background: #a6a6a6;
+    }
+    aside {
+        background: #ffe6f9;
+        flex: 1;
+    }
+    aside input {
+        border: 0;
+        padding: 10px;
+        width: 70%;
+    }
+    aside button {
+        width: 19%;
+        background: #ffccff;
+        border: none;
+        padding: 5px;
+    }
+</style>
+
 <body>
-  <form id="container">
-    <input id="name" type="text" name="name" value="" placeholder="Please enter your name">
-    <button type="button" name="button" onclick="setUsername()">
-      Chat now!
-    </button>
-  </form>
-  <div id="error-container"></div>
+  <div id="container">
+    <section>
+      <h2>Messages: </h2>
+      <ul id="messages"></ul>
+    </section>
+    <footer>
+      <h2>Input: </h2>
+      <form action="">
+        <input id="boxMessage" autocomplete="off" disabled="true" /><button id="buttonMessage" disabled="true">Send</button>
+      </form>
+    </footer>
+  </div>
+  <aside>
+    <h2>Active Users: </h2>
+    <input id="boxName" type="text" placeholder="Set username" size="13" />
+    <button type="submit" id="buttonName" onClick="setMyName()">Set</button>
+    <ul id="ulist"></ul>
+  </aside>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io();
-  function setUsername() {
-    socket.emit('setUsername', document.getElementById('name').value);
-  };
-  var user;
-  socket.on('userExists', function (data) {
-    document.getElementById('error-container').innerHTML = data;
-  });
-  socket.on('userSet', function (data) {
-    user = data.username;
-    document.body.innerHTML = '<div id = "message-container"></div>\
-         <form id="send-container">\
-          <input type = "text" id = "message">\
-          <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
-         </form>';
-  });
-  function sendMessage() {
-    var msg = document.getElementById('message').value;
-    if (msg) {
-      socket.emit('msg', { message: msg, user: user });
-    }
-  }
-  socket.on('msg', function (data) {
-    if (user) {
-      document.getElementById('message-container').innerHTML += '<div><b>' +
-        data.user + '</b>: ' + data.message + '</div>'
-    }
-  })
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
 
 </html>
