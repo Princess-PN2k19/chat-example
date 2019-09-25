@@ -1,92 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-  <title>Chat App</title>
-  <link href="style.css" type="text/plain" rel="stylesheet" />
-</head>
 
-<style>
-    html{
-        height: 100%; box-sizing: border-box;
-    }
-    *, *:before, *:after{
-        box-sizing: inherit;
-        }
-    body{
-        font: 13px Helvetica, Arial; margin: 0; min-height: 100%; display: flex; flex-flow: row wrap;
-        }
-    form{
-        background: #ffb3ff; bottom: 0; width: 100%;
-        }
-    form input{
-        border: 0; padding: 10px; width: 85%; margin-right: .5%;
-        }
-    form button{
-        width: 10%; background: #ffccff; border: none; padding: 5px;
-        }
-    #messages{
-        list-style-type: none; margin: 0; padding: 0;
-        }
-    #messages li{
-        padding: 5px 10px;
-        }
-    #messages li:nth-child(odd){
-        background: #ffcce6;
-        }
-    #container{
-        display: flex;
-        flex-direction: column;
-        width: calc(100% - 200px);
-    }
-    section {
-        flex: 4;
-        background-image: url("http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-03.jpg");
-    }
-    footer {
-        flex: 1;
-        background: #a6a6a6;
-    }
-    aside {
-        background: #ffe6f9;
-        flex: 1;
-    }
-    aside input {
-        border: 0;
-        padding: 10px;
-        width: 70%;
-    }
-    aside button {
-        width: 19%;
-        background: #ffccff;
-        border: none;
-        padding: 5px;
-    }
-</style>
+    <head>
+        <title id='title'>Chat App</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
 
 <body>
-  <div id="container">
-    <section>
-      <h2>Messages: </h2>
-      <ul id="messages"></ul>
-    </section>
-    <footer>
-      <h2>Input: </h2>
-      <form action="">
-        <input id="boxMessage" autocomplete="off" disabled="true" /><button id="buttonMessage" disabled="true">Send</button>
-      </form>
-    </footer>
-  </div>
-  <aside>
-    <h2>Active Users: </h2>
-    <input id="boxName" type="text" placeholder="Set username" size="13" />
-    <button type="submit" id="buttonName" onClick="setMyName()">Set</button>
-    <ul id="ulist"></ul>
-  </aside>
-</body>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
+    <center>
+        <form id="inputName" action="">
+            <div class="form-group">
+                <img src="chat.png">
+                <input class="form-control" id="username" placeholder="Set a username" autofocus='' required=""></input>
+            </div>
+            <div class="form-group">
+                <button id="chat" class="btn btn-default" type="submit">Chat!</button>
+            </div>
+        </form>
+    </center>
+    <div class="container">
+        <div class="row" id="header"><button class="btn btn-default" id="logout">Logout</button>
+            <h2 class="uname"></h2>
+        </div>
+        <div id="mainbody" class="row">
+            <div class="col-sm-3" id="active">
+                <div class="Ouser">
+                    <h4>Active Users:</h4>
+                </div>
+                <span id="activeUsers"></span>
+            </div>
+            <div class="col-sm-5" id="main">
+                <div id="messagesHolder">
+                    <div id="messages"></div>
+                </div>
+                <form autocomplete='off' id="chatbox" action="">
+                    <input id='m' autofocus='' autocomplete='off' placeholder="Send a message" />
+                </form>
+            </div>
+            <div class="col-sm-4" id="otherConvo">
+                <ul id="chatboxes"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="script.js"></script>
+</body>
 
 </html>
